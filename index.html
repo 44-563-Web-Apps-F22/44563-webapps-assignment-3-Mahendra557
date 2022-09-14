@@ -82,5 +82,46 @@
                 </tr>
             </table>
         </p>
+        <hr>
+    <h3>Code display </h3>
+    <p> <blockquote>
+        <a href = "https://stackoverflow.com/questions/12813573/position-icons-into-circle"> Placing items on a circle</a>
+    </blockquote>   
+        <pre>
+            @mixin on-circle($item-count, $circle-size, $item-size) {
+                position: relative;
+                width:  $circle-size;
+                height: $circle-size;
+                padding: 0;
+                border-radius: 50%; 
+                list-style: none;       
+                
+                > * {
+                  display: block;
+                  position: absolute;
+                  top:  50%; 
+                  left: 50%;
+                  width:  $item-size;
+                  height: $item-size;
+                  margin: -($item-size / 2);
+                
+                  $angle: (360 / $item-count);
+                  $rot: 0;
+              
+                  @for $i from 1 through $item-count {
+                    &:nth-of-type(#{$i}) {
+                      transform: 
+                        rotate($rot * 1deg) 
+                        translate($circle-size / 2) 
+                        rotate($rot * -1deg);
+                    }
+              
+                    $rot: $rot + $angle;
+                  }
+                }
+              }
+            </pre>
+        <a href="https://css-tricks.com/snippets/sass/sorting-function/">Solution</a>
+    </p>
     </body>
 </html>
